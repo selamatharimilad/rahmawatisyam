@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+ <title>Teruntuk Rahmawati Syam</title>
+
+<link rel="icon" type="image/png" href="favicon.ico">
+<link rel="icon" type="image/png" href="android-chrome-192x192.png">
+<link rel="icon" type="image/png" href="android-chrome-512x512.png">
+<link rel="icon" type="image/png" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" href="favicon-16x16.png">
+<link rel="icon" type="image/png" href="favicon-32x32.png">
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+    }
+
+    body{
+      height:100vh;
+      overflow:hidden;
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      background:linear-gradient(to bottom,#0f172a,#1e293b,#111827);
+      font-family:'Poppins',sans-serif;
+      color:white;
+      text-align:center;
+      position:relative;
+    }
+
+    /* bintang */
+
+    .stars{
+      position:absolute;
+      width:100%;
+      height:100%;
+      overflow:hidden;
+      top:0;
+      left:0;
+    }
+
+    .star{
+      position:absolute;
+      width:2px;
+      height:2px;
+      background:white;
+      border-radius:50%;
+      animation:blink 2s infinite;
+    }
+
+    @keyframes blink{
+      0%{opacity:0.2;}
+      50%{opacity:1;}
+      100%{opacity:0.2;}
+    }
+
+    /* bulan */
+
+    .moon{
+      position:absolute;
+
+      top:60px;
+      right:50px;
+
+      width:90px;
+      height:90px;
+
+      border-radius:50%;
+
+      background:
+      radial-gradient(circle at 30% 30%,
+      #ffffff,
+      #dbeafe,
+      #93c5fd);
+
+      box-shadow:
+      0 0 40px rgba(255,255,255,0.6),
+      0 0 80px rgba(147,197,253,0.4);
+
+      z-index:1;
+
+      animation:moonGlow 4s ease-in-out infinite;
+    }
+
+    @keyframes moonGlow{
+
+      0%{
+        transform:scale(1);
+        opacity:0.9;
+      }
+
+      50%{
+        transform:scale(1.05);
+        opacity:1;
+      }
+
+      100%{
+        transform:scale(1);
+        opacity:0.9;
+      }
+    }
+
+    /* container */
+
+    .container{
+      display:none;
+
+      position:relative;
+      z-index:2;
+
+      width:90%;
+      max-width:600px;
+
+      background:rgba(255,255,255,0.05);
+
+      backdrop-filter:blur(10px);
+
+      padding:40px;
+
+      border-radius:24px;
+
+      box-shadow:
+      0 0 30px rgba(0,0,0,0.25),
+      0 0 60px rgba(147,197,253,0.08);
+
+      animation:fadeIn 2s ease;
+    }
+
+    @keyframes fadeIn{
+      from{
+        opacity:0;
+        transform:translateY(20px);
+      }
+
+      to{
+        opacity:1;
+        transform:translateY(0);
+      }
+    }
+
+    h1{
+      font-size:34px;
+      margin-bottom:20px;
+      font-weight:500;
+    }
+
+    p{
+      margin-top:18px;
+      line-height:1.9;
+      color:#dbeafe;
+      font-size:16px;
+      font-weight:300;
+    }
+
+    button{
+      margin-top:30px;
+      padding:14px 28px;
+
+      border:none;
+      border-radius:16px;
+
+      background:rgba(255,255,255,0.12);
+
+      backdrop-filter:blur(8px);
+
+      color:white;
+
+      font-size:16px;
+
+      cursor:pointer;
+
+      transition:0.3s;
+
+      font-weight:300;
+    }
+
+    button:hover{
+      transform:scale(1.04);
+
+      background:rgba(255,255,255,0.18);
+    }
+
+    #message{
+      display:none;
+
+      opacity:0;
+
+      transition:1.5s ease;
+    }
+
+    .footer{
+      margin-top:35px;
+      font-size:13px;
+      color:#94a3b8;
+    }
+
+    /* intro */
+
+    #intro{
+      position:absolute;
+
+      z-index:5;
+
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:center;
+
+      animation:fadeIn 2s ease;
+    }
+
+    #intro h2{
+      font-weight:300;
+      margin-bottom:25px;
+      color:#dbeafe;
+    }
+
+    /* tombol musik */
+
+    #musicBtn{
+
+      position:fixed;
+
+      bottom:18px;
+      right:20px;
+
+      background:none;
+
+      border:none;
+
+      color:rgba(255,255,255,0.7);
+
+      font-size:18px;
+
+      cursor:pointer;
+
+      z-index:10;
+
+      transition:0.3s;
+    }
+
+    #musicBtn:hover{
+
+      transform:scale(1.1);
+
+      color:white;
+    }
+
+    /* fade intro */
+
+    .fade-out{
+      animation:fadeOut 1.2s forwards;
+    }
+
+    @keyframes fadeOut{
+
+      from{
+        opacity:1;
+      }
+
+      to{
+        opacity:0;
+        visibility:hidden;
+      }
+    }
+
+    /* tombol hilang */
+
+    .hide-button{
+
+      opacity:0;
+
+      transform:translateY(-8px);
+
+      transition:
+      opacity 1s ease,
+      transform 1s ease;
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="stars"></div>
+
+  <div class="moon"></div>
+
+  <!-- intro -->
+
+  <div id="intro">
+
+    <h2>Terimakasih telah bertahan hingga hari ini.</h2>
+
+    <button onclick="openPage()">
+      buka
+    </button>
+
+  </div>
+
+  <!-- container -->
+
+  <div class="container">
+
+    <h1>
+      Yaumul milad <br>
+      Barakallah fii umrik
+    </h1>
+
+    <button onclick="startExperience()">
+      Buka Pesan
+    </button>
+
+    <div id="message">
+
+      <p>
+        Aku tahu kamu nggak mau dirayakan.
+        Jadi ini bukan perayaan besar.
+      </p>
+
+      <p>
+        Aku cuma ingin hari ulang tahunmu lewat
+        dengan sedikit kehangatan.
+      </p>
+
+      <p>
+        jadi semoga kamu tetap sehat,
+        dan pelan-pelan menemukan hal-hal kecil
+        yang membuat hari-harimu terasa lebih ringan.
+      </p>
+
+      <div class="footer">
+        Selamat Hari Milad Rahmawati 😇 <br>
+        From RK
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- musik -->
+
+  <button id="musicBtn" onclick="toggleMusic()">
+    ♪
+  </button>
+
+  <audio id="bgmusic" loop>
+    <source src="night.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+
+    function openPage(){
+
+      const intro = document.getElementById("intro");
+
+      intro.classList.add("fade-out");
+
+      setTimeout(() => {
+
+        intro.style.display = "none";
+
+        document.querySelector(".container")
+        .style.display = "block";
+
+      }, 1200);
+    }
+
+    function toggleMusic(){
+
+      const music =
+      document.getElementById("bgmusic");
+
+      const button =
+      document.getElementById("musicBtn");
+
+      if(music.paused){
+
+        music.play();
+
+        button.innerHTML = "♪";
+
+      } else {
+
+        music.pause();
+
+        button.innerHTML = "×";
+      }
+    }
+
+    function startExperience(){
+
+      const openBtn =
+      document.querySelector(".container button");
+
+      openBtn.classList.add("hide-button");
+
+      setTimeout(() => {
+
+        openBtn.style.display = "none";
+
+        const message =
+        document.getElementById("message");
+
+        message.style.display = "block";
+
+        setTimeout(() => {
+
+          message.style.opacity = "1";
+
+        },100);
+
+      },1000);
+
+      const music =
+      document.getElementById("bgmusic");
+
+      music.volume = 0.4;
+
+      music.play();
+    }
+
+    // bintang random
+
+    const starsContainer =
+    document.querySelector('.stars');
+
+    for(let i = 0; i < 120; i++){
+
+      let star =
+      document.createElement('div');
+
+      star.classList.add('star');
+
+      star.style.top =
+      Math.random() * 100 + '%';
+
+      star.style.left =
+      Math.random() * 100 + '%';
+
+      star.style.animationDuration =
+      (Math.random() * 3 + 2) + 's';
+
+      starsContainer.appendChild(star);
+    }
+
+  </script>
+
+</body>
+</html>
